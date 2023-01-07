@@ -21,11 +21,11 @@ def censor(value):
     except StrError as e:
         pprint(e)
         return
-    postfix = ''
-    for i in value.split():
-        if i.lower() in qwe:
-            i = qwe[i.lower()]
-        postfix += f'{i} '
+    else:
+        postfix = ''
+        for i in value.split():
+            if i.lower() in qwe:
+                i = qwe[i.lower()]
+            postfix += f'{i} '
 
-    return f'{postfix}'
-
+        return f'{postfix}'
