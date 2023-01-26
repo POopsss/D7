@@ -27,5 +27,4 @@ def censor(value):
             if i.lower() in qwe:
                 i = qwe[i.lower()]
             postfix += f'{i} '
-
         return f'{postfix}'
