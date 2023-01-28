@@ -1,6 +1,7 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import *
+from .models import Post
 from .filters import NewsFilter
 from .forms import PostForm
 
@@ -45,7 +46,8 @@ class ArticleDetail(PostDetail):
     queryset = Post.objects.filter(postType='AR')
 
 
-class PostCreate(CreateView):
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('qwe.add_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
@@ -65,13 +67,16 @@ class ArticleCreate(PostCreate):
         return super().form_valid(form)
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('qwe.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
 
 
-class PostDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('qwe.delete_post',)
+    raise_exception = True
     model = Post
     template_name = 'post_delete.html'
-    success_url = reverse_lazy('post_list')
+    success_url = reverse_lazy('news_list')

@@ -20,12 +20,23 @@
                <td>Заголовок</td>
                <td>Дата</td>
                <td>Текст</td>
+               {% if perms.qwe.change_post or perms.qwe.delete_post %}
+               <td>Действие</td>
+               {% endif %}
            </tr>
            {% for news in news %}
            <tr>
                <td>{{ news.title|censor|truncatechars:15 }}</td>
                <td>{{ news.date|date:'d M Y' }}</td>
                <td>{{ news.text|truncatechars:50|censor}}</td>
+               <td>
+                   {% if perms.qwe.change_post %}
+                   <a href="{{ news.id }}/edit/">Изменить</a>
+                   {% endif %}
+                   {% if perms.qwe.delete_post %}
+                   <a href="{{ news.id }}/delete/">Удалить</a>
+                   {% endif %}
+               </td>
            </tr>
            {% endfor %}
 

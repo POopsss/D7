@@ -2,11 +2,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from django.urls import path
-from .views import PostList, PostDetail, NewsCreate, ArticleCreate, PostUpdate, NewsList, ArticleList, NewsDetail, ArticleDetail, PostDelete
+from .views import PostDetail, NewsCreate, ArticleCreate, PostUpdate, NewsList, ArticleList, NewsDetail, ArticleDetail, PostDelete
 
 
 urlpatterns = [
-   path('post/', PostList.as_view(), name='post_list'),
    path('news/', NewsList.as_view(), name='news_list'),
    path('article/', ArticleList.as_view(), name='article_list'),
    path('post/<pk>', PostDetail.as_view(), name='post_detail'),

@@ -32,16 +32,27 @@
 <!--                           </a>-->
 <!--                       </li>-->
                        <li class="nav-item">
+                       <a class="nav-link" href="/admin/">Админка</a>
+                       </li>
+                       <li class="nav-item">
                            <a class="nav-link" href="/news/">Новости</a>
                        </li>
                        <li class="nav-item">
                            <a class="nav-link" href="/article/">Статьи</a>
                        </li>
+                       {% if perms.qwe.add_post %}
                        <li class="nav-item">
                            <a class="nav-link" href="/news/create/">Добавить новость</a>
                        </li>
                        <li class="nav-item">
                            <a class="nav-link" href="/article/create/">Добавить статью</a>
+                       </li>
+                       {% endif %}
+                       <li class="nav-item">
+                           <a class="nav-link" href="/accounts/login/">Войти</a>
+                       </li>
+                       <li class="nav-item">
+                           <a class="nav-link" href="/accounts/logout/">Выйти</a>
                        </li>
                    </ul>
                </div>
