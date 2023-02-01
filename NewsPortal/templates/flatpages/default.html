@@ -48,6 +48,11 @@
                            <a class="nav-link" href="/article/create/">Добавить статью</a>
                        </li>
                        {% endif %}
+                       {% if request.user.is_authenticated %}
+                       <li class="nav-item">
+                           <a class="nav-link" href="/subscriptions/">Подписки</a>
+                       </li>
+                       {% endif %}
                        <li class="nav-item">
                            <a class="nav-link" href="/accounts/login/">Войти</a>
                        </li>
