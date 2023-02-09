@@ -49,9 +49,16 @@ INSTALLED_APPS = [
     'fpage',
     'django_filters',
     'accounts',
+    'rest_framework',
 ]
 
 SITE_ID = 1
+
+CELERY_BROKER_URL = 'redis://default:iDxH9t1ViUiHULuqpX0RyaD9D0XvvoWK@redis-15416.c11.us-east-1-3.ec2.cloud.redislabs.com:15416'
+CELERY_RESULT_BACKEND = 'redis://default:iDxH9t1ViUiHULuqpX0RyaD9D0XvvoWK@redis-15416.c11.us-east-1-3.ec2.cloud.redislabs.com:15416'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -175,3 +182,9 @@ MANAGERS = (
 ADMINS = (
     ('Asd', 'BarsikSpamMail@yandex.ru'),
 )
+
+# CELERY_BROKER_URL = 'redis-15416.c11.us-east-1-3.ec2.cloud.redislabs.com:15416'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
