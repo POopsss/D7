@@ -9,9 +9,6 @@ from .models import Post, Category, Subscription
 from .filters import NewsFilter
 from .forms import PostForm
 
-from django.http import HttpResponse
-from django.views import View
-
 
 class PostList(ListView):
     model = Post
@@ -106,12 +103,3 @@ def subscriptions(request):
         user_subscribed=Exists(Subscription.objects.filter(user=request.user, category=OuterRef('pk')))
     ).order_by('category')
     return render(request, 'subscriptions.html', {'categories': categories_with_subscriptions})
-
-# from django.http import HttpResponse
-# from django.views import View
-# from .tasks import task
-#
-# class IndexView(View):
-#     def get(self, request):
-#         task.delay()
-#         return HttpResponse('Hello!')

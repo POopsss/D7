@@ -1,14 +1,37 @@
+from datetime import datetime, timezone, timedelta
 from celery import shared_task
-from .management.commands.runapscheduler import my_job
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
-from .models import Post
+from .models import Post, Subscription
 
 
 @shared_task
 def weekly_news():
-    my_job()
-    print('Рассылка прошла')
+    for user in User.objects.all():
+        if user.email:
+            if Subscription.objects.filter(user=user):
+                post_list = []
+                for subscription in Subscription.objects.filter(user=user):
+                    for post in Post.objects.filter(
+                            category=subscription.category,
+                            date__gt=datetime.now(timezone.utc) - timedelta(days=7)
+                    ):
+                        if post not in post_list:
+                            post_list.append(post)
+                if post_list:
+                    subject = 'Новые статьи за последнюю неделю'
+                    text = '\n'.join(
+                        ''f'{post.title} -- http://127.0.0.1:8000{post.get_absolute_url()};  ' for post in post_list)
+                    text_html = '\n'.join(
+                        f'<a href="http://127.0.0.1:8000{post.get_absolute_url()}">{post.title}</a>;  ' for post in
+                        post_list)
+                else:
+                    subject = 'Новые статьи за последнюю неделю'
+                    text = 'Новых статей по вашим подпискам за последнюю неделю не публиковалось =('
+                    text_html = 'Новых статей по вашим подпискам за последнюю неделю не публиковалось =('
+                msg = EmailMultiAlternatives(subject, text, None, [user.email])
+                msg.attach_alternative(text_html, "text/html")
+                msg.send()
 
 
 @shared_task

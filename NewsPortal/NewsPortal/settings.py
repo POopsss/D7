@@ -54,8 +54,8 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-CELERY_BROKER_URL = 'redis://default:iDxH9t1ViUiHULuqpX0RyaD9D0XvvoWK@redis-15416.c11.us-east-1-3.ec2.cloud.redislabs.com:15416'
-CELERY_RESULT_BACKEND = 'redis://default:iDxH9t1ViUiHULuqpX0RyaD9D0XvvoWK@redis-15416.c11.us-east-1-3.ec2.cloud.redislabs.com:15416'
+CELERY_BROKER_URL = 'redis://default:kIlHzSlIBW2hgVkgQEAzfWJbruEwl5sB@redis-18408.c246.us-east-1-4.ec2.cloud.redislabs.com:18408'
+CELERY_RESULT_BACKEND = 'redis://default:kIlHzSlIBW2hgVkgQEAzfWJbruEwl5sB@redis-18408.c246.us-east-1-4.ec2.cloud.redislabs.com:18408'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -182,9 +182,3 @@ MANAGERS = (
 ADMINS = (
     ('Asd', 'BarsikSpamMail@yandex.ru'),
 )
-
-# CELERY_BROKER_URL = 'redis-15416.c11.us-east-1-3.ec2.cloud.redislabs.com:15416'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-# CELERY_ACCEPT_CONTENT = ['application/json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
